@@ -9,5 +9,5 @@ export class PostEntity extends BaseEntity {
     caption: string;
 
     @Column()
-    posts: string[];
+    post: string;
 }

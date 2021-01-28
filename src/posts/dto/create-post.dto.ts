@@ -1,4 +1,4 @@
-export class PostDto {
+export class CreatePostDto {
     caption: string;
-    posts: string[];
+    post: string;
 }
