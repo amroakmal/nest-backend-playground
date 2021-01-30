@@ -6,6 +6,6 @@ export class OptionEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(() => PostEntity, post => post.options)
+    @ManyToOne(() => PostEntity, post => post.options, { eager: false })
     post: PostEntity;
 }

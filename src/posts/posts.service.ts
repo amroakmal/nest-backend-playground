@@ -14,4 +14,8 @@ export class PostsService {
     async createPost(postDto: CreatePostDto): Promise<PostEntity> {
         return this.postRepository.createPost(postDto);
     }
+
+    async getAllPosts(): Promise<PostEntity[]> {
+        return this.postRepository.getAllPosts();
+    }
 }

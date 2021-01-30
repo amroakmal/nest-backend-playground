@@ -9,6 +9,6 @@ export class PostEntity extends BaseEntity {
     @Column()
     caption: string;
 
-    @OneToMany(() => OptionEntity, options => options.post)
+    @OneToMany(() => OptionEntity, options => options.post, { eager: true })
     options: OptionEntity[];
 }
