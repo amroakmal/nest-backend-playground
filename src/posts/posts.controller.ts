@@ -12,7 +12,7 @@ export class PostsController {
     createPost (
         @Body() 
         createPostDto: CreatePostDto
-    ) {        
+    ) {                
        return this.postService.createPost(createPostDto); 
     }
 }
