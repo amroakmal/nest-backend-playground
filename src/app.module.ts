@@ -8,9 +8,9 @@ import { OptionsModule } from './options/options.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(typeOrmConfig),
     PostsModule,
-    OptionsModule
+    OptionsModule,
+    TypeOrmModule.forRoot(typeOrmConfig),
   ],
   controllers: [AppController],
   providers: [AppService],

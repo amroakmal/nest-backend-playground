@@ -1,14 +1,23 @@
 import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
-import { OptionEntity } from '../options/option.entity';
+import { Options } from '../options/option.entity';
 
 @Entity()
-export class PostEntity extends BaseEntity {
+export class Posts extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
     caption: string;
 
-    @OneToMany(() => OptionEntity, options => options.post, { eager: true })
-    options: OptionEntity[];
+    @OneToMany(() => Options, options => options.post, { eager: true })
+    options: Options[];
+
+    constructor(
+        caption: string,
+        options: Options[]
+    ) {
+        super();
+        this.caption = caption;
+        this.options = options;
+    }
 }

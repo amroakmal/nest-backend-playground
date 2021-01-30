@@ -1,11 +1,19 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-import { PostEntity } from '../posts/post.entity';
+import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Posts } from '../posts/post.entity';
 
 @Entity()
-export class OptionEntity {
+export class Options extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(() => PostEntity, post => post.options, { eager: false })
-    post: PostEntity;
+    @Column()
+    optionBody: string;
+
+    @ManyToOne(() => Posts, post => post.options, { eager: false })
+    post: Posts;
+
+    constructor(optionBody: string) {
+        super();
+        this.optionBody = optionBody;
+    }
 }
