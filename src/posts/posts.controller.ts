@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Get } from '@nestjs/common';
+import { Body, Controller, Post, Get, ValidationPipe } from '@nestjs/common';
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { Posts } from './post.entity';
@@ -12,8 +12,8 @@ export class PostsController {
 
     @Post()
     createPost (
-        @Body() createPostDto: CreatePostDto,
-        @Body('options') options: Options[]): Promise<Posts> {                
+        @Body(ValidationPipe) createPostDto: CreatePostDto,
+        @Body('options', ValidationPipe) options: Options[]): Promise<Posts> {                
        return this.postService.createPost(createPostDto, options); 
     }
 
