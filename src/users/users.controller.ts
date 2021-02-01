@@ -1,6 +1,8 @@
-import { Body, Controller, Inject, Post, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, Inject, Post, ValidationPipe } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { RegisterUserDto } from './dto/register-user.dto';
+import { Users } from './user.entity';
+import { LoginUserDto } from './dto/login-user.dto';
 
 @Controller('users')
 export class UsersController {
@@ -11,15 +13,18 @@ export class UsersController {
 
     @Post('/register')
     async regitser(
-        @Body() registerUserDto: RegisterUserDto
-    ) {
-        console.log(registerUserDto);
-        
-        const newUser = await this.userService.register(registerUserDto);
+        @Body() registerUserDto: RegisterUserDto): Promise<void> {        
+        return await this.userService.register(registerUserDto);
+    }
 
-        return {
-            id: newUser.id,
-            username: newUser.username
-        }
+    @Post('/login')
+    async login(
+        @Body() loginUserDto: LoginUserDto) {        
+        return await this.userService.login(loginUserDto);
+    }
+
+    @Get()
+    async getAllUsers(): Promise<Users[]> {
+        return await this.userService.getAllUsers();
     }
 }
